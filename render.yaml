@@ -1,0 +1,36 @@
+services:
+  # ── Backend (Node.js Web Service) ──
+  - type: web
+    name: smartpark-backend
+    runtime: node
+    region: oregon
+    plan: free
+    rootDir: smartpark-backend
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: FRONTEND_URL
+        value: https://smartpark-frontend.onrender.com
+
+  # ── Frontend (Static Site) ──
+  - type: web
+    name: smartpark-frontend
+    runtime: static
+    region: oregon
+    plan: free
+    rootDir: smartpark-frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://smartpark-backend.onrender.com/api
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
