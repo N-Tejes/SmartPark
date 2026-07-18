@@ -22,7 +22,6 @@ services:
   - type: web
     name: smartpark-frontend
     runtime: static
-    region: oregon
     rootDir: smartpark-frontend
     buildCommand: npm install && npm run build
     staticPublishPath: dist
