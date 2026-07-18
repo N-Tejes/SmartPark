@@ -16,7 +16,7 @@ services:
       - key: JWT_EXPIRES_IN
         value: 7d
       - key: FRONTEND_URL
-        value: https://smartpark-frontend.onrender.com
+        value: https://smartpark-frontend-2eje.onrender.com
 
   # ── Frontend (Static Site) ──
   - type: web
@@ -27,7 +27,7 @@ services:
     staticPublishPath: dist
     envVars:
       - key: VITE_API_URL
-        value: https://smartpark-backend.onrender.com/api
+        value: https://smartpark-backend-vlju.onrender.com/api
     routes:
       - type: rewrite
         source: /*
