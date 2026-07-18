@@ -1,0 +1,431 @@
+/* ============================================================
+   SmartPark Design Tokens
+   Palette:  asphalt (bg/surfaces) + signal amber (accent, from
+             parking signage) + lane green (available) + brake
+             red (full/cancel)
+   Type:     Barlow Condensed (display, signage-style headings)
+             Inter (body/UI)
+             IBM Plex Mono (prices, slot codes, ticket stub)
+   Signature: perforated "parking ticket" stub used for bookings
+   ============================================================ */
+
+:root {
+  --asphalt-900: #10131A;
+  --asphalt-800: #1A1E27;
+  --asphalt-700: #242A35;
+  --asphalt-600: #323A48;
+  --concrete-400: #8B909C;
+  --concrete-300: #AEB3BD;
+  --chalk-50: #F3F5F7;
+  --signal-amber: #F2B705;
+  --signal-amber-dim: #C99A0A;
+  --lane-green: #34D399;
+  --brake-red: #F2545B;
+
+  --font-display: "Barlow Condensed", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--asphalt-900);
+  background-image:
+    radial-gradient(circle at 20% -10%, rgba(242, 183, 5, 0.08), transparent 45%),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 78px,
+      rgba(255, 255, 255, 0.018) 78px,
+      rgba(255, 255, 255, 0.018) 80px
+    );
+  color: var(--chalk-50);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin: 0;
+}
+
+h1 { font-size: clamp(2.2rem, 4vw, 3.4rem); line-height: 1.02; }
+h2 { font-size: clamp(1.5rem, 2.6vw, 2rem); }
+h3 { font-size: 1.2rem; letter-spacing: 0.06em; }
+
+p {
+  margin: 0;
+  color: var(--concrete-300);
+  line-height: 1.55;
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--signal-amber);
+}
+
+/* Layout shells */
+.shell {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 28px;
+  width: 100%;
+}
+
+.page {
+  flex: 1;
+  padding: 48px 0 96px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  padding: 12px 22px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.12s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.btn:active { transform: scale(0.98); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+.btn-primary {
+  background: var(--signal-amber);
+  color: #1A1300;
+}
+.btn-primary:hover:not(:disabled) { background: #ffd23f; }
+
+.btn-outline {
+  background: transparent;
+  border-color: var(--asphalt-600);
+  color: var(--chalk-50);
+}
+.btn-outline:hover:not(:disabled) { border-color: var(--signal-amber); color: var(--signal-amber); }
+
+.btn-danger {
+  background: transparent;
+  border-color: rgba(242, 84, 91, 0.4);
+  color: var(--brake-red);
+}
+.btn-danger:hover:not(:disabled) { background: rgba(242, 84, 91, 0.1); }
+
+.btn-sm { padding: 8px 14px; font-size: 0.82rem; }
+.btn-block { width: 100%; }
+
+/* Forms */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.field label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--concrete-400);
+}
+
+.field input,
+.field select,
+.field textarea {
+  background: var(--asphalt-800);
+  border: 1px solid var(--asphalt-600);
+  border-radius: var(--radius-sm);
+  padding: 11px 13px;
+  color: var(--chalk-50);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--signal-amber);
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.form-card {
+  background: var(--asphalt-800);
+  border: 1px solid var(--asphalt-700);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  max-width: 440px;
+}
+
+/* Cards */
+.card {
+  background: var(--asphalt-800);
+  border: 1px solid var(--asphalt-700);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.badge-available { background: rgba(52, 211, 153, 0.12); color: var(--lane-green); }
+.badge-full { background: rgba(242, 84, 91, 0.12); color: var(--brake-red); }
+.badge-pending { background: rgba(242, 183, 5, 0.12); color: var(--signal-amber); }
+.badge-confirmed { background: rgba(52, 211, 153, 0.12); color: var(--lane-green); }
+.badge-cancelled { background: rgba(139, 144, 156, 0.15); color: var(--concrete-400); }
+.badge-completed { background: rgba(139, 144, 156, 0.15); color: var(--concrete-300); }
+
+/* Alerts */
+.alert {
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-size: 0.88rem;
+  margin-bottom: 16px;
+}
+.alert-error {
+  background: rgba(242, 84, 91, 0.1);
+  border: 1px solid rgba(242, 84, 91, 0.35);
+  color: #ffb3b6;
+}
+.alert-success {
+  background: rgba(52, 211, 153, 0.1);
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  color: #a6f3d6;
+}
+
+/* Dashed lane divider - signage motif */
+.lane-divider {
+  height: 1px;
+  background-image: linear-gradient(90deg, var(--asphalt-600) 60%, transparent 40%);
+  background-size: 18px 1px;
+  background-repeat: repeat-x;
+  margin: 32px 0;
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 64px 20px;
+  color: var(--concrete-400);
+}
+.empty-state h3 { color: var(--chalk-50); margin-bottom: 8px; }
+
+/* Loading spinner */
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-top-color: var(--signal-amber);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.center-loading {
+  display: flex;
+  justify-content: center;
+  padding: 64px 0;
+}
+
+@media (max-width: 640px) {
+  .field-row { grid-template-columns: 1fr; }
+  .form-card { padding: 24px; }
+}
+
+/* ============================================================
+   Signature element: the parking-ticket stub
+   Used to represent a Booking. Two halves joined by a perforated
+   tear-line, punched circular notches on each side, mono digits
+   for the ticket number, and a barcode-style footer.
+   ============================================================ */
+
+.ticket {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  background: var(--asphalt-800);
+  border: 1px solid var(--asphalt-700);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+}
+
+.ticket-main {
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ticket-number {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: var(--concrete-400);
+  text-transform: uppercase;
+}
+
+.ticket-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.ticket-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--concrete-300);
+}
+
+.ticket-meta span b {
+  display: block;
+  color: var(--chalk-50);
+  font-size: 0.95rem;
+}
+
+.ticket-stub {
+  position: relative;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px 14px;
+  background: repeating-linear-gradient(
+      135deg,
+      rgba(242, 183, 5, 0.05),
+      rgba(242, 183, 5, 0.05) 6px,
+      transparent 6px,
+      transparent 12px
+    ),
+    var(--asphalt-700);
+  border-left: 2px dashed var(--asphalt-600);
+}
+
+.ticket-stub::before,
+.ticket-stub::after {
+  content: "";
+  position: absolute;
+  left: -7px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--asphalt-900);
+  border: 1px solid var(--asphalt-700);
+}
+.ticket-stub::before { top: -7px; }
+.ticket-stub::after { bottom: -7px; }
+
+.ticket-amount {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: var(--signal-amber);
+}
+
+.ticket-status {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 560px) {
+  .ticket { grid-template-columns: 1fr; }
+  .ticket-stub {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    border-left: none;
+    border-top: 2px dashed var(--asphalt-600);
+  }
+  .ticket-stub::before,
+  .ticket-stub::after {
+    left: auto;
+    top: -7px;
+  }
+  .ticket-stub::before { left: -7px; }
+  .ticket-stub::after { right: -7px; bottom: auto; }
+}
