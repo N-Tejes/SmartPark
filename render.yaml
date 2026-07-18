@@ -2,7 +2,7 @@ services:
   # ── Backend (Node.js Web Service) ──
   - type: web
     name: smartpark-backend
-    runtime: node
+    env: node
     region: oregon
     plan: free
     rootDir: smartpark-backend
@@ -21,9 +21,9 @@ services:
   # ── Frontend (Static Site) ──
   - type: web
     name: smartpark-frontend
-    runtime: static
+    env: static
     region: oregon
-    plan: free
+    plan: static
     rootDir: smartpark-frontend
     buildCommand: npm install && npm run build
     staticPublishPath: dist
